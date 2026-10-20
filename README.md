@@ -67,10 +67,6 @@ O DHCP (Dynamic Host Configuration Protocol) entrega automaticamente aos cliente
 | Server1 | `192.168.2.0/24` — VLAN 250 | `192.168.2.1` |
 | Server2 | `192.168.3.0/24` — VLAN 350 | `192.168.3.1` |
 
-Para funcionar como esperado, o serviço DHCP precisa estar ativado em cada servidor e o escopo deve conter a sub-rede, a máscara e o gateway corretos. Os IPs estáticos dos servidores devem ser excluídos das faixas dinâmicas para evitar conflitos.
-
-A imagem não informa os intervalos inicial e final dos escopos DHCP; por isso, este README não presume quais endereços serão distribuídos. Como cada servidor está na mesma sub-rede dos clientes que atende, não é necessário relay DHCP para essas redes, desde que o serviço esteja configurado localmente e corretamente.
-
 ## Como o tráfego circula
 
 ### Entre dispositivos da mesma VLAN
@@ -99,8 +95,6 @@ O cliente envia uma solicitação DHCP. O servidor da sua VLAN pode responder co
 | Fa0/12–Fa0/16 | Clientes da VLAN 250 |
 | Fa0/17–Fa0/21 | Clientes da VLAN 350 |
 
-Confira a numeração das interfaces no arquivo do Packet Tracer. A porta do switch conectada a cada interface do roteador deve pertencer à VLAN da sub-rede correspondente. O mesmo vale para as portas conectadas aos servidores.
-
 ## Resumo do funcionamento
 
 1. O switch conecta fisicamente clientes, servidores e roteador.
@@ -108,12 +102,6 @@ Confira a numeração das interfaces no arquivo do Packet Tracer. A porta do swi
 3. Cada servidor DHCP fornece parâmetros IP aos clientes da rede correspondente.
 4. Os clientes enviam ao gateway o tráfego destinado a outras sub-redes.
 5. O roteador encaminha o tráfego entre as redes conforme as interfaces e as configurações ativas.
-
-## Escopo e observações
-
-Este README explica a finalidade dos equipamentos, a segmentação, o endereçamento e o fluxo esperado da comunicação. Não afirma que todos os serviços foram testados e não substitui o arquivo de configuração do Packet Tracer.
-
-Para complementar a documentação, podem ser adicionados o arquivo `.pkt`, os intervalos reais dos escopos DHCP e evidências de testes de conectividade.
 
 ## Conceitos demonstrados
 
